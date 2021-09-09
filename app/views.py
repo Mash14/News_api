@@ -9,3 +9,12 @@ def index():
     '''
 
     return render_template('index.html')
+
+
+@app.route('/articles')
+def article():
+    '''
+    View article page that returns the articles page and its data
+    '''
+
+    return render_template('article.html')
