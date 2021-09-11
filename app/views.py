@@ -15,7 +15,7 @@ def index():
     return render_template('index.html', title = title, sources = sources)
 
 
-@app.route('/articles')
+@app.route('/source/<source_id>')
 def article():
     '''
     View article page that returns the articles page and its data

@@ -1,3 +1,5 @@
+{% import 'macros.html' as macro %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +12,7 @@
     <!--The sources-->
     <h1>Different News Sources</h1>
     <ul>
-        {% for source in sources %}
-            <li>{{ source.name }}</li>
-        {% endfor %}
+        {{ macro.displaySourceList(sources) }}
     </ul>
 </body>
 </html>
