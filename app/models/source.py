@@ -4,15 +4,17 @@ class Source:
     '''
 
 
-    def __init__(self,id,name):
+    def __init__(self,id,name,description):
         """
         __init__method that helps to define properties of our objects
         
         Args:
             id: New source id
             name: New source name
+            description: New source description
         """
         
         self.id = id
         self.name = name
+        self.description = description
     

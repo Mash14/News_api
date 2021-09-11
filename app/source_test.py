@@ -11,7 +11,7 @@ class SourceTest(unittest.TestCase):
         '''
         Set up method that will run before every Test
         '''
-        self.new_source = Source('news_tech', 'News Technology')
+        self.new_source = Source('news_tech', 'News Technology', 'The fastest and most reliable  news source on technology')
 
 
     def test_init(self):
@@ -20,6 +20,7 @@ class SourceTest(unittest.TestCase):
         '''
         self.assertEqual(self.new_source.id,'news_tech')
         self.assertEqual(self.new_source.name, 'News Technology')
+        self.assertEqual(self.new_source.description,'The fastest and most reliable  news source on technology')
 
         
     def test_instance(self):

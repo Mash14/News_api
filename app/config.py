@@ -1,4 +1,4 @@
-from instance.config import NEWS_API
+from instance.config import NEWS_API_KEY
 
 
 class Config:
