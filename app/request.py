@@ -65,37 +65,18 @@ def get_articles(id):
         get_articles_data = url.read()
         get_articles_respose = json.loads(get_articles_data)
 
-        article_results = None
+        article_object = None
 
-        if get_articles_respose['articles']:
-            articles_results_list = get_articles_respose['articles']
-            article_results = process_articles(articles_results_list)
+        if get_articles_respose:
+            source = get_articles_respose.get('source')
+            title = get_articles_respose.get('title')
+            urlToImage = get_articles_respose.get('urlToImage')
+            description = get_articles_respose.get('description')
+            urlToArticle = get_articles_respose.get('url')
+            publishedAt = get_articles_respose.get('publishedAt')
 
-    return article_results
+            article_object = Article(source,title,urlToImage,description,urlToArticle,publishedAt)
+
+    return article_object
 
 
-def process_articles(article_list):
-    '''
-    Function that processes the articles results and transform them to a list of Objects
-
-    Args:
-        articles_list: A list of dictionaries that contain the articles details
-
-    Returns:
-        articles_results: A list of articles objects
-    '''
-    article_results = []
-
-    for article_item in article_list:
-        source = article_item.get('source')
-        title = article_item.get('title')
-        urlToImage = article_item.get('urlToImage')
-        description = article_item.get('description')
-        urlToArticle = article_item.get('url')
-        publishedAt = article_item.get('publishedAt')
-
-        article_object = Article(source,title,urlToImage,description,urlToArticle,publishedAt)
-
-        article_results.append(article_object)
-
-    return article_results

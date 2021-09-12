@@ -1,4 +1,4 @@
-from app.request import get_sources,get_articles
+from .request import get_sources,get_articles
 from flask import render_template
 from app import app
 
@@ -16,10 +16,10 @@ def index():
 
 
 @app.route('/source/<source_id>')
-def article(id):
+def article(source_id):
     '''
     View article page that returns the articles page and its data
     '''
-    articles = get_articles(id)
-    title = 'now'
+    articles = get_articles(source_id)
+    title = 'articles'
     return render_template('source.html', title = title, articles = articles)
