@@ -56,27 +56,47 @@ def process_sources(source_list):
 
 
 def get_articles(id):
-    '''
-    Function that gets the json response to our url request
-    '''
-    get_articles_url = base_url.format(id,api_key)
-
+    """
+    Function that gets the json response for our url request
+    """
+    #
+    get_articles_url = 'https://newsapi.org/v2/top-headlines?sources={}&apiKey={}'.format(id,api_key)
     with urllib.request.urlopen(get_articles_url) as url:
         get_articles_data = url.read()
-        get_articles_respose = json.loads(get_articles_data)
+        get_articles_response = json.loads(get_articles_data)
+        
+        articles_results = None
+        if get_articles_response['articles']:
+            articles_results_list = get_articles_response['articles']
+            articles_results = process_articles(articles_results_list)
+    return articles_results
 
-        article_object = None
 
-        if get_articles_respose:
-            source = get_articles_respose.get('source')
-            title = get_articles_respose.get('title')
-            urlToImage = get_articles_respose.get('urlToImage')
-            description = get_articles_respose.get('description')
-            urlToArticle = get_articles_respose.get('url')
-            publishedAt = get_articles_respose.get('publishedAt')
+def process_articles(articles_list):
+    """
+    A function that processes the news result and transform them to a list of objects
+    
+    Args:
+        articles_list: A list of dictionary that returns news details
+    
+    returns:
+         articles_results: A list of news objects
+    """
+    articles_results = []
+    for articles_item in articles_list:
+       source = articles_item.get('source') 
+       title =  articles_item.get('title')      
+       description =  articles_item.get('description')
+       urlToArticle =  articles_item.get('url')
+       urlToImage =  articles_item.get('urlToImage')
+       publishedAt =  articles_item.get('publishedAt')
+       
+       if urlToImage:
+            articles_object = Article(source, title, description, urlToArticle,urlToImage, publishedAt )
+            articles_results.append(articles_object)
+    
+    return  articles_results
 
-            article_object = Article(source,title,urlToImage,description,urlToArticle,publishedAt)
 
-    return article_object
 
 

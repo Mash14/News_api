@@ -15,11 +15,11 @@ def index():
     return render_template('index.html', title = title, sources = sources)
 
 
-@app.route('/source/<source_id>')
-def article(source_id):
+@app.route('/source/<id>')
+def source(id):
     '''
     View article page that returns the articles page and its data
     '''
-    articles = get_articles(source_id)
-    title = 'articles'
+    articles = get_articles(id)
+    title = f'{id}'
     return render_template('source.html', title = title, articles = articles)
