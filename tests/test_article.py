@@ -33,5 +33,3 @@ class ArticleTest(unittest.TestCase):
         self.assertEqual( self.new_article.publishedAt, '2017-10-19T13:00:00Z')
 
 
-if __name__ == '__main__':
-    unittest.main()
