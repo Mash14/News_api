@@ -60,7 +60,7 @@ def get_articles(id):
     Function that gets the json response for our url request
     """
     #
-    get_articles_url = 'https://newsapi.org/v2/top-headlines?sources={}&apiKey={}'.format(id,api_key)
+    get_articles_url = base_url.format(id,api_key)
     with urllib.request.urlopen(get_articles_url) as url:
         get_articles_data = url.read()
         get_articles_response = json.loads(get_articles_data)
@@ -92,7 +92,7 @@ def process_articles(articles_list):
        publishedAt =  articles_item.get('publishedAt')
        
        if urlToImage:
-            articles_object = Article(source, title, description, urlToArticle,urlToImage, publishedAt )
+            articles_object = Article(source, title, urlToImage, description, urlToArticle, publishedAt )
             articles_results.append(articles_object)
     
     return  articles_results

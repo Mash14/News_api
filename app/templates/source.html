@@ -2,8 +2,13 @@
 {% import 'macros.html' as macro %}
 
 {% block content %}
+<div class="container">
     <h1>Articles</h1>
+    <div class="row source-row">
     <ul>
         {{ macro.displayArticleList(articles)}}
     </ul>
+    </div>
+
+</div>
 {% endblock%}
